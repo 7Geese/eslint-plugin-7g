@@ -13,7 +13,7 @@ RuleTester.setDefaultConfig({
 });
 var ruleTester = new RuleTester();
 
-ruleTester.run("moment-utc", rule, {
+ruleTester.run("no-classname-on-common-components", rule, {
     valid: [
         '<ProfileImage imageUrl="test" />',
         '<button type="submit" />'
