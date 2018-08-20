@@ -14,14 +14,19 @@ RuleTester.setDefaultConfig({
 var ruleTester = new RuleTester();
 
 ruleTester.run("moment-utc", rule, {
-    valid: [
-        '<ProfileImage imageUrl="test" />',
-        '<button type="submit" />'
-    ],
-    invalid: [
-        {
-            code: '<ProfileImage className="cool-class-name" />',
-            errors: [{ message: "Avoid className prop on common component ProfileImage"}]
-        }
-    ]
+    valid: [{
+        code: '<ProfileImage imageUrl="test" />',
+        options: [{ components: ['Icon'] }]
+    }, {
+        code: '<ProfileImage imageUrl="test" />',
+        options: [{ components: ['ProfileImage'] }]
+    }, {
+        code: '<button type="submit" />',
+        options: [{ components: ['ProfileImage'] }]
+    }],
+    invalid: [{
+        code: '<ProfileImage className="cool-class-name" />',
+        options: [{ components: ['ProfileImage'] }],
+        errors: [{ message: "Avoid className prop on common component ProfileImage"}]
+    }]
 });
