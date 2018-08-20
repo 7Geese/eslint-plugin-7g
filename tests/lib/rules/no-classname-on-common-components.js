@@ -19,6 +19,8 @@ ruleTester.run("no-classname-on-common-components", rule, {
         options: [{ components: ['Icon'] }]
     }, {
         code: '<ProfileImage imageUrl="test" />',
+    }, {
+        code: '<ProfileImage imageUrl="test" />',
         options: [{ components: ['ProfileImage'] }]
     }, {
         code: '<button type="submit" />',
