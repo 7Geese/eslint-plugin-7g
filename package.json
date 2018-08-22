@@ -7,14 +7,15 @@
   "devDependencies": {
     "eslint": "2.8.0",
     "istanbul": "0.4.3",
+    "jsx-ast-utils": "2.0.1",
     "mocha": "2.4.5"
   },
   "scripts": {
     "test": "istanbul cover --dir reports/coverage node_modules/mocha/bin/_mocha tests/**/*.js -- --reporter dot"
   },
-  "repository" : {
-    "type" : "git",
-    "url" : "https://github.com/7Geese/eslint-plugin-7g.git"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/7Geese/eslint-plugin-7g.git"
   },
   "license": "ISC",
   "bugs": {

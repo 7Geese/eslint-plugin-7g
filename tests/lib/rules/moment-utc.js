@@ -1,9 +1,7 @@
-"use strict";
-
-var rule = require("../../../lib/rules/moment-utc"),
+const rule = require("../../../lib/rules/moment-utc"),
     RuleTester = require('eslint').RuleTester;
 
-var ruleTester = new RuleTester();
+const ruleTester = new RuleTester();
 ruleTester.run("moment-utc", rule, {
     valid: [
         "moment.utc()",
