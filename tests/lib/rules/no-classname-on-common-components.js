@@ -1,6 +1,4 @@
-"use strict";
-
-var rule = require("../../../lib/rules/no-classname-on-common-components"),
+const rule = require("../../../lib/rules/no-classname-on-common-components"),
     RuleTester = require('eslint').RuleTester;
 
 RuleTester.setDefaultConfig({
@@ -11,7 +9,7 @@ RuleTester.setDefaultConfig({
         },
     }
 });
-var ruleTester = new RuleTester();
+const ruleTester = new RuleTester();
 
 ruleTester.run("no-classname-on-common-components", rule, {
     valid: [{
