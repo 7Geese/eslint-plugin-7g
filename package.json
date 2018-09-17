@@ -1,14 +1,19 @@
 {
   "name": "eslint-plugin-7g",
-  "version": "1.1.0",
-  "description": "7geese eslint rules",
+  "version": "1.2.0",
+  "description": "ESLint rules to help enforce coding style at 7Geese",
   "main": "index.js",
-  "author": "Sean Everest",
+  "author": "7Geese",
+  "dependencies": {
+    "jsx-ast-utils": "2.0.1"
+  },
   "devDependencies": {
-    "eslint": "2.8.0",
+    "eslint": "5.6.0",
     "istanbul": "0.4.3",
-    "jsx-ast-utils": "2.0.1",
     "mocha": "2.4.5"
+  },
+  "peerDependencies": {
+    "eslint": "^5.0.0"
   },
   "scripts": {
     "test": "istanbul cover --dir reports/coverage node_modules/mocha/bin/_mocha tests/**/*.js -- --reporter dot"
