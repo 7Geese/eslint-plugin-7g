@@ -1,4 +1,7 @@
 *.DS_Store
+.github/
+docs/
 node_modules/
 *yarn-error.log
 *npm-error.log
+rules/__tests__/*
