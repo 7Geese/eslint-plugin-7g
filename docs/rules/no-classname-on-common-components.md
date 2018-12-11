@@ -1,9 +1,9 @@
 ## no-classname-on-common-components
 > _Enforce not adding `className` prop on our common components._
 
-We don't want our common components to have classNames on them, as this encourages us to override existing UI patterns with custom CSS. While this is necessary in some cases, it is preferred to simply wrap the component in a `div` or `span`, and then apply the class there.
+We don't want our common components to have `className` props on them, as this encourages us to override existing UI patterns with custom CSS. While this is necessary in some cases, it is preferred to simply wrap the component in a `div` or `span`, and then apply the class there.
 
-Another common practice is to use classNames for `js-test` hooks. Again, just wrap the component in
+Another common practice is to use `className` for `js-test` hooks. Again, just wrap the component in another element with that class on it.
 
 ### Fail
 
