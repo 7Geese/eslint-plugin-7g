@@ -7,7 +7,7 @@
     "lint": "eslint ./rules/** --ext .js --quiet",
     "lint:loud": "eslint ./rules/** --ext .js",
     "lint:fix": "eslint ./rules/** --ext .js --fix",
-    "test": "istanbul cover --dir reports/coverage node_modules/mocha/bin/_mocha tests/**/*.js -- --reporter dot"
+    "test": "jest"
   },
   "engines": {
     "node": ">= 6"
