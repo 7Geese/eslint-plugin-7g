@@ -25,4 +25,5 @@ yarn add eslint-plugin-7g -D
 
 ### Rules
 
+
 You can find rule documentation [over here](https://github.com/7Geese/eslint-plugin-7g/tree/master/docs/rules/).
