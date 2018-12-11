@@ -1,30 +1,31 @@
 {
   "name": "eslint-plugin-7g",
-  "version": "1.2.0",
+  "version": "2.0.0",
   "description": "ESLint rules to help enforce coding style at 7Geese",
   "main": "index.js",
-  "author": "7Geese",
+  "scripts": {
+    "test": "istanbul cover --dir reports/coverage node_modules/mocha/bin/_mocha tests/**/*.js -- --reporter dot"
+  },
+  "engines": {
+    "node": ">= 6"
+  },
   "dependencies": {
     "jsx-ast-utils": "2.0.1"
   },
   "devDependencies": {
-    "eslint": "5.6.0",
+    "eslint": "5.10.0",
     "istanbul": "0.4.3",
     "mocha": "2.4.5"
   },
   "peerDependencies": {
-    "eslint": "^5.0.0"
-  },
-  "scripts": {
-    "test": "istanbul cover --dir reports/coverage node_modules/mocha/bin/_mocha tests/**/*.js -- --reporter dot"
+    "eslint": ">= 5.10.0"
   },
   "repository": {
     "type": "git",
     "url": "https://github.com/7Geese/eslint-plugin-7g.git"
   },
-  "license": "ISC",
-  "bugs": {
-    "url": "https://github.com/7Geese/eslint-plugin-7g/issues"
-  },
-  "homepage": "https://github.com/7Geese/eslint-plugin-7g#readme"
+  "license": "MIT",
+  "homepage": "https://github.com/7Geese/eslint-plugin-7g#readme",
+  "author": "7Geese",
+  "private": false
 }
