@@ -4,9 +4,9 @@
   "description": "ESLint rules to help enforce coding style at 7Geese",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint ./lib/** ./tests/** --ext .js --quiet",
-    "lint:loud": "eslint ./lib/** ./tests/** --ext .js",
-    "lint:fix": "eslint ./lib/** ./tests/** --ext .js --fix",
+    "lint": "eslint ./rules/** --ext .js --quiet",
+    "lint:loud": "eslint ./rules/** --ext .js",
+    "lint:fix": "eslint ./rules/** --ext .js --fix",
     "test": "istanbul cover --dir reports/coverage node_modules/mocha/bin/_mocha tests/**/*.js -- --reporter dot"
   },
   "engines": {
