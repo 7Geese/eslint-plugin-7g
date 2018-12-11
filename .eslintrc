@@ -1,0 +1,9 @@
+{
+    "extends": [
+        "7geese",
+        "7geese/rules/7geese/off",
+        "7geese/rules/compat/off",
+        "7geese/rules/jsx-a11y/off",
+        "7geese/rules/react/off"
+    ],
+}
