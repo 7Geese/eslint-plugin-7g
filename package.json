@@ -7,7 +7,8 @@
     "lint": "eslint ./rules/** --ext .js --quiet",
     "lint:loud": "eslint ./rules/** --ext .js",
     "lint:fix": "eslint ./rules/** --ext .js --fix",
-    "test": "jest"
+    "test": "jest",
+    "release": "np --no-yarn"
   },
   "engines": {
     "node": ">= 6"
@@ -27,7 +28,8 @@
     "eslint-plugin-jsx-a11y": "6.1.2",
     "eslint-plugin-promise": "4.0.1",
     "eslint-plugin-react": "7.11.1",
-    "jest": "23.6.0"
+    "jest": "23.6.0",
+    "np": "3.0.4"
   },
   "peerDependencies": {
     "eslint": ">= 5.10.0"
