@@ -1,6 +1,6 @@
 const { RuleTester } = require('eslint');
 
-const rule = require('../no-classname-on-common-components');
+const rule = require('../no-classname-on-common-components.js');
 
 
 RuleTester.setDefaultConfig({
