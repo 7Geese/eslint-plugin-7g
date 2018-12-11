@@ -7,7 +7,8 @@
     "lint": "eslint ./rules/** --ext .js --quiet",
     "lint:loud": "eslint ./rules/** --ext .js",
     "lint:fix": "eslint ./rules/** --ext .js --fix",
-    "test": "jest",
+    "test:js": "jest",
+    "test": "npm run lint:loud && npm run test:js",
     "release": "np --no-yarn"
   },
   "engines": {
