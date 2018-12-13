@@ -2,12 +2,14 @@ module.exports = function (context) {
     return {
         ImportDeclaration(node) {
             const { type, value } = node.source;
-            const isLiteral = type === 'Literal';
-            const isReactRedux = value === 'react-redux';
-            const specifiers = node.specifiers.reduce((acc, spec) => acc.concat([spec.imported.name]), []);
-            const isConnect = specifiers.includes('connect');
-
-            if (isLiteral && isReactRedux && isConnect) {
+            if (!type || type !== 'Literal') {
+                return null;
+            }
+            if (!value || value !== 'react-redux') {
+                return null;
+            }
+            const isConnect = node.specifiers.some(spec => spec.imported.name === 'connect');
+            if (isConnect) {
                 const fileName = context.getFilename();
                 const isValidReduxFilename = /-redux.jsx$/.test(fileName);
                 if (!isValidReduxFilename) {
