@@ -1,6 +1,7 @@
 const exampleQuery = `
 import gql from 'graphql-tag';
 
+
 export default {
     query: gql\`
     query myQuery {
@@ -19,6 +20,7 @@ export default {
 
 const exampleMutation = `
 import gql from 'graphql-tag';
+
 
 export default {
     mutation: gql\`
