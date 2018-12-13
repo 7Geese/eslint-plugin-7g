@@ -1,43 +1,44 @@
+const getLocForReport = (node) => {
+    const { parent } = node;
+    if (!parent || !parent.loc) {
+        return {};
+    }
+    return {
+        loc: parent.loc,
+    };
+};
+
+const messages = {
+    query: 'Filename for Apollo queries must end with "-query.js"',
+    mutation: 'Filename for Apollo mutations must end with "-mutation.js"',
+};
+
+const getReport = context => (node, type) => {
+    const loc = getLocForReport(node);
+    return context.report(Object.assign({}, loc, {
+        node,
+        message: messages[type],
+    }));
+};
+
 
 module.exports = function (context) {
     const fileName = context.getFilename();
+    const report = getReport(context);
     const testFileName = pattern => pattern.test(fileName);
     const isValidQueryFilename = testFileName(/-query.js$/);
     const isValidMutationFilename = testFileName(/-mutation.js$/);
-    let areWeInFlavorTown = false;
-
-    const getLocForReport = (node) => {
-        const { parent } = node;
-        if (!parent || !parent.loc) {
-            return {};
-        }
-        return {
-            loc: parent.loc,
-        };
-    };
-
-    const messages = {
-        query: 'Filename for Apollo queries must end with "-query.js"',
-        mutation: 'Filename for Apollo mutations must end with "-mutation.js"',
-    };
-
-    const report = (node, type) => {
-        const loc = getLocForReport(node);
-        return context.report(Object.assign({}, loc, {
-            node,
-            message: messages[type],
-        }));
-    };
+    let isImportingGql = false;
 
     return {
         ImportDeclaration(node) {
             const { type, value } = node.source;
             if (type === 'Literal' && value === 'graphql-tag') {
-                areWeInFlavorTown = true;
+                isImportingGql = true;
             }
         },
         ExportDefaultDeclaration(node) {
-            if (areWeInFlavorTown) {
+            if (isImportingGql) {
                 const { declaration } = node;
                 if (!declaration || !declaration.properties) {
                     return;
