@@ -1,7 +1,7 @@
 module.exports = {
     testPathIgnorePatterns: [
         '/node_modules/',
-        '/__fixtures/',
+        '/__fixtures__/',
     ],
     verbose: true,
 };
