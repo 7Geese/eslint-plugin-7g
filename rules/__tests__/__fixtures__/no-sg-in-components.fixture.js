@@ -38,6 +38,12 @@ class SweetComponent extends Component {
 }
 `;
 
+const functionUsingSG = `
+const someFunction = () => {
+    return SG.user.getFullName();
+};
+`;
+
 const functionComponentUsingSG = `
 import React from 'react';
 
@@ -52,12 +58,30 @@ const SweetComponent = () => {
 export default SweetComponent;
 `;
 
+const moreComplexFunctionUsingSG = `
+const SweetComponent = () => {
+    const greeter = () => {
+        const startText = 'hello ';
+        return (name) => {
+            return startText + name + ', you are a part of the ' + SG.network.get('name')
+        };
+    };
+    return (
+        <div>
+            {greeter()(SG.user.getFullName())}
+        </div>
+    );
+};
+`;
+
 module.exports = {
     validExamples: {
         marionetteClassUsingSG,
+        functionUsingSG,
     },
     invalidExamples: {
         componentUsingSG,
         functionComponentUsingSG,
+        moreComplexFunctionUsingSG,
     },
 };
