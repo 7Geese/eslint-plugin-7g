@@ -58,7 +58,30 @@ const SweetComponent = () => {
 export default SweetComponent;
 `;
 
+const functionsWithConditionals = `
+import React from 'react';
+
+const SweetComponent = (props) => {
+    if (props.someProp) {
+        return (
+            <div>
+                {SG.user.getFullName()}
+            </div>
+        );
+    }
+    switch (prop.otherProp) {
+        case 'yo sick':
+            return SG.user.getFullName();
+        default:
+            return (<div />);
+    }
+    return null;
+};
+`;
+
 const moreComplexFunctionUsingSG = `
+import React from 'react';
+
 const SweetComponent = () => {
     const greeter = () => {
         const startText = 'hello ';
@@ -82,6 +105,7 @@ module.exports = {
     invalidExamples: {
         componentUsingSG,
         functionComponentUsingSG,
+        functionsWithConditionals,
         moreComplexFunctionUsingSG,
     },
 };

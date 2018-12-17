@@ -1,6 +1,5 @@
 module.exports = function (context) {
     const isClass = scope => scope.type === 'class';
-    const isFunction = scope => scope.type === 'function';
 
     const reactComponentNames = ['Component', 'PureComponent'];
 
@@ -26,17 +25,62 @@ module.exports = function (context) {
         return false;
     };
 
-    const getReturnStatement = body => body.find(({ type }) => type === 'ReturnStatement');
+    const isReturnStatement = node => node.type === 'ReturnStatement';
+    const isIfStatement = node => node.type === 'IfStatement';
+    const isSwitchStatement = node => node.type === 'SwitchStatement';
 
-    const isJSXElement = node => node.type === 'JSXElement';
+    const hasJSXReturnStatements = (body) => {
+        if (!body) {
+            return false;
+        }
+        if (!Array.isArray(body) && isJSXElement(body)) {
+            return true;
+        }
+        return body.reduce((hasJsxReturns, node) => {
+            if (hasJsxReturns) {
+                return hasJsxReturns;
+            }
+            if (isReturnStatement(node)) {
+                return isJSXElement(node.argument);
+            }
+            if (isIfStatement(node) && (node.consequent && node.consequent.body)) {
+                return hasJSXReturnStatements(node.consequent.body);
+            }
+            if (isSwitchStatement(node) && node.cases) {
+                return node.cases.some((switchCase) => {
+                    if (!switchCase || !switchCase.consequent) {
+                        return false;
+                    }
+                    return switchCase.consequent.some(c => hasJSXReturnStatements(c.argument));
+                });
+            }
+            return hasJsxReturns;
+        }, false);
+    };
 
-    const isUpperScopeModule = scope => scope.upper.type === 'module';
+    const isJSXElement = node => node.type === 'JSXElement' || node.type === 'JSXFragment';
+
+    const isModuleScope = scope => scope.type === 'module';
+
+    const getModuleScope = (scope) => {
+        if (isModuleScope(scope)) {
+            return scope;
+        }
+        return getModuleScope(scope.upper);
+    };
 
     const getTopLevelFnScope = (scope) => {
-        if (isUpperScopeModule(scope)) {
+        if (isModuleScope(scope.upper)) {
             return scope;
         }
         return getTopLevelFnScope(scope.upper);
+    };
+
+    const includesReact = variables => variables.some(variable => variable.name === 'React');
+
+    const isReactInScope = (scope) => {
+        const moduleScope = getModuleScope(scope);
+        return includesReact(moduleScope.variables);
     };
 
     const isReactStatelessFn = (scope) => {
@@ -44,38 +88,58 @@ module.exports = function (context) {
         if (!upperFunctionScope || !upperFunctionScope.block.body) {
             return false;
         }
+
+        if (!isReactInScope(upperFunctionScope)) {
+            return false;
+        }
+
         const { body } = upperFunctionScope.block.body;
         if (!body) {
             return false;
         }
-        const returnStatement = getReturnStatement(body);
-        if (!returnStatement) {
-            return false;
+
+        if (hasJSXReturnStatements(body)) {
+            return true;
         }
-        if (isJSXElement(returnStatement.argument)) {
+
+        return false;
+    };
+
+    const isJSXFilename = (ctx) => {
+        const filename = ctx.getFilename();
+        //  Handles cases where code is passed directly to the rule (such as a test or ASTExplorer)
+        if (filename === '<text>' || filename === '<input>') {
+            return true;
+        }
+        if (filename.endsWith('.jsx')) {
             return true;
         }
         return false;
     };
 
-    const report = node => context.report({
+    const report = (componentType = 'components') => node => context.report({
         node,
-        message: 'Avoid using SG in components. Consider using SGProvider HOC instead.',
+        message: `Avoid using SG in ${componentType}. Use SGProvider HOC instead.`,
     });
+    const reportClassComponent = report('class components');
+    const reportFnComponent = report('stateless components');
+
 
     return {
         Identifier(node) {
+            //  Early return if it's not a valid .jsx file (becasue React components only live in these files)
+            if (!isJSXFilename(context)) {
+                return;
+            }
             if (node.name === 'SG') {
                 const scope = context.getScope();
                 if (isClass(scope.upper)) {
                     if (isReactClass(scope.upper)) {
-                        report(node);
+                        reportClassComponent(node);
                     }
                 }
-                if (isFunction(scope)) {
-                    if (isReactStatelessFn(scope)) {
-                        report(node);
-                    }
+                if (isReactStatelessFn(scope)) {
+                    reportFnComponent(node);
                 }
             }
         },
