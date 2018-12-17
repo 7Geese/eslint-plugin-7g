@@ -30,7 +30,7 @@ module.exports = function (context) {
     const isSwitchStatement = node => node.type === 'SwitchStatement';
 
     const hasJSXReturnStatements = (body) => {
-        if (!body) {
+        if (!body || !body.length) {
             return false;
         }
         if (!Array.isArray(body) && isJSXElement(body)) {
@@ -63,14 +63,14 @@ module.exports = function (context) {
     const isModuleScope = scope => scope.type === 'module';
 
     const getModuleScope = (scope) => {
-        if (isModuleScope(scope)) {
+        if ((!scope || !scope.type) || isModuleScope(scope)) {
             return scope;
         }
         return getModuleScope(scope.upper);
     };
 
     const getTopLevelFnScope = (scope) => {
-        if (isModuleScope(scope.upper)) {
+        if ((!scope || !scope.upper) || isModuleScope(scope.upper)) {
             return scope;
         }
         return getTopLevelFnScope(scope.upper);
@@ -79,7 +79,13 @@ module.exports = function (context) {
     const includesReact = variables => variables.some(variable => variable.name === 'React');
 
     const isReactInScope = (scope) => {
+        if (!scope) {
+            return false;
+        }
         const moduleScope = getModuleScope(scope);
+        if (!moduleScope) {
+            return false;
+        }
         return includesReact(moduleScope.variables);
     };
 
