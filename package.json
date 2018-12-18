@@ -4,10 +4,12 @@
   "description": "ESLint rules to help enforce coding style at 7Geese",
   "main": "index.js",
   "scripts": {
-    "lint": "eslint ./rules/** --ext .js --quiet",
-    "lint:loud": "eslint ./rules/** --ext .js",
-    "lint:fix": "eslint ./rules/** --ext .js --fix",
+    "lint": "eslint ./lib/** --ext .js --quiet",
+    "lint:loud": "eslint ./lib/** --ext .js",
+    "lint:fix": "eslint ./lib/** --ext .js --fix",
     "test:js": "jest --watch",
+    "bench": "node ./benchmarks/benchmark.js",
+    "bench:update": "node ./benchmarks/benchmark.js --update",
     "test": "npm run lint:loud && jest",
     "release": "np --no-yarn"
   },
@@ -19,6 +21,8 @@
   },
   "devDependencies": {
     "babel-eslint": "10.0.1",
+    "chalk": "2.4.1",
+    "convert-hrtime": "2.0.0",
     "eslint": "5.10.0",
     "eslint-config-7geese": "1.1.0",
     "eslint-plugin-filenames": "1.3.2",
