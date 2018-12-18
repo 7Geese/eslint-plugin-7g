@@ -4,5 +4,8 @@ module.exports = {
         '/__fixtures__/',
         '/benchmarks/',
     ],
+    testMatch: [
+        '<rootDir>/**spec.js',
+    ],
     verbose: true,
 };
