@@ -1,6 +1,6 @@
 /**
  *  Benchmark tests allow us to see how various code changes will
- *  actually effect how long it takes to run oue
+ *  actually effect how long it takes to run our rules
  *
  *  Largely insipred by ESLint benchmark testing
  *  https://github.com/eslint/eslint/blob/master/tests/bench/bench.js
