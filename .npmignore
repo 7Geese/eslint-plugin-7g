@@ -5,3 +5,4 @@ node_modules/
 *yarn-error.log
 *npm-error.log
 rules/__tests__/*
+benchmark/*
