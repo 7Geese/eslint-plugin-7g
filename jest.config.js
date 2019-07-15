@@ -5,7 +5,7 @@ module.exports = {
         '/benchmarks/',
     ],
     testMatch: [
-        '<rootDir>/**spec.js',
+        '<rootDir>/**/*spec.js',
     ],
     verbose: true,
 };
