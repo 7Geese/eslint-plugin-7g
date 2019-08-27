@@ -28,7 +28,7 @@ Explain how the rule would be configured in the `.eslintrc` of a consumer. Inclu
     "rules": {
         "7g/rule-name": ["error", {
             "some-option": true
-        }],
+        }]
     }
 }
 ```
