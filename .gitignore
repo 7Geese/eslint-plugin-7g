@@ -3,3 +3,6 @@ node_modules/
 *yarn-error.log
 *npm-error.log
 *__benchmark.snapshot__.json
+
+.idea/
+
