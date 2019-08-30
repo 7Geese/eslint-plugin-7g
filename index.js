@@ -6,6 +6,7 @@ module.exports = {
         'no-classname-on-common-components': require('./lib/rules/no-classname-on-common-components.js'),
         'no-sg-in-components': require('./lib/rules/no-sg-in-components.js'),
         'redux-connect-filenames': require('./lib/rules/redux-connect-filenames.js'),
+        'button-has-text-or-child': require('./lib/rules/button-has-text-or-child.js'),
     },
     configs: {
         recommended: {
