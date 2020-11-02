@@ -1,5 +1,5 @@
 {
-    "parser": "babel-eslint",
+    "parser": "@babel/eslint-parser",
     "extends": [
         "7geese/rules/eslint/best-practices/on",
         "7geese/rules/eslint/errors/on",
