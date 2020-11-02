@@ -24,7 +24,6 @@
     "@babel/eslint-parser": "^7.12.1",
     "@babel/plugin-proposal-class-properties": "^7.12.1",
     "@babel/preset-react": "^7.12.1",
-    "babel-eslint": "10.1.0",
     "chalk": "4.1.0",
     "convert-hrtime": "3.0.0",
     "eslint": "^7.12.1",
