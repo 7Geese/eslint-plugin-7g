@@ -8,6 +8,7 @@ module.exports = {
         'redux-connect-filenames': require('./lib/rules/redux-connect-filenames.js'),
         'button-has-text-or-child': require('./lib/rules/button-has-text-or-child.js'),
         'no-react-select': require('./lib/rules/no-react-select.js'),
+        'no-rc-tooltip': require('./lib/rules/no-rc-tooltip.js'),
     },
     configs: {
         recommended: {
@@ -18,6 +19,7 @@ module.exports = {
                 '7g/redux-connect-filenames': 'error',
                 '7g/button-has-text-or-child': 'off',
                 '7g/no-react-select': 'error',
+                '7g/no-rc-tooltip': 'warn',
             },
         },
         on: {
@@ -28,6 +30,7 @@ module.exports = {
                 '7g/redux-connect-filenames': 'error',
                 '7g/button-has-text-or-child': 'warn',
                 '7g/no-react-select': 'error',
+                '7g/no-rc-tooltip': 'warn',
             },
         },
         off: {
@@ -38,6 +41,7 @@ module.exports = {
                 '7g/redux-connect-filenames': 'off',
                 '7g/button-has-text-or-child': 'off',
                 '7g/no-react-select': 'off',
+                '7g/no-rc-tooltip': 'off',
             },
         },
     },
