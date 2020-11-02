@@ -1,6 +1,6 @@
 {
   "name": "eslint-plugin-7g",
-  "version": "4.0.0-0",
+  "version": "4.0.1-0",
   "description": "ESLint rules to help enforce coding style at 7Geese",
   "main": "index.js",
   "scripts": {
